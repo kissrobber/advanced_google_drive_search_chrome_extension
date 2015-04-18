@@ -1,0 +1,42 @@
+{
+  "name": "advanced google drive search chrome extension",
+  "version": "1.0.0",
+  "description": "advanced google drive search chrome extension",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kissrobber/advanced_google_drive_search_chrome_extension.git"
+  },
+  "scripts": {
+    "start": "gulp"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "reactify", {
+          "es6": true
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "browser-sync": "^1.8.1",
+    "browserify": "^7.0.3",
+    "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-less": "^3.0.0",
+    "gulp-notify": "^2.1.0",
+    "gulp-sourcemaps": "^1.2.8",
+    "gulp-util": "^3.0.1",
+    "pretty-hrtime": "^0.2.2",
+    "reactify": "^0.17.1",
+    "require-dir": "^0.1.0",
+    "underscore": "^1.7.0",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.2.1"
+  },
+  "dependencies": {
+    "react": "^0.13.1",
+    "underscore": "^1.8.3",
+    "moment": "^2.10.2"
+  }
+}
