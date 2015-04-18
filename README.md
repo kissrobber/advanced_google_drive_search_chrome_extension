@@ -1,7 +1,10 @@
 # advanced_google_drive_search_chrome_extension
 Advanced Google Drive Search Chrome Extension
 
-## Installation
+## Install from Chrome webstore 
+https://chrome.google.com/webstore/detail/advanced-drive-search/chomjcpadndbjgkanbaakmjehdoighab
+
+## run on local
 After cloning the repository, install dependencies:
 ```
 npm install
