@@ -3,11 +3,8 @@ var React = require('react/addons');
 
 var SearchResultItem = React.createClass({
   handleSelect: function(){
-    console.log('click..');
     if(this.props.result.mimeType === "application/vnd.google-apps.folder"){
       this.props.onSelectFolder(this.props.result);
-    } else {
-
     }
   },
   handleOpen: function(){
@@ -29,7 +26,7 @@ var SearchResultItem = React.createClass({
           { this.props.result.labels.starred ? <i className="mdi-action-star-rate small"></i> : null }
           {
             this.props.result.mimeType === "application/vnd.google-apps.folder" ?
-              <a href='#' onClick={this.handleSelect}><img src='images/folder-down-icon.png'/></a> :
+              <a href='#' onClick={this.handleSelect}><img src='images/folder-select-icon.png'/></a> :
               null
           }
           <a href='#' onClick={this.handleOpen}><img src='images/open-icon.png'/></a>

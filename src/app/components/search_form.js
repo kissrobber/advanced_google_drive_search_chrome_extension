@@ -26,51 +26,62 @@ var SearchForm = React.createClass({
     this.props.handleSearch(form);
   },
   handleSelectFolder: function(folder){
+    if(!_.find(this.state.folders, function(f){ return f.id == folder.id; })){
+      var newState = React.addons.update(this.state, {
+        searchWord: { $set: null },
+        folders: { $push: [folder] }
+      });
+      this.setState(newState);
+    }
+  },
+  handleUnselectFolder: function(folder){
+    var folders = _.reject(this.state.folders, function(f){ return f.id == folder.id; });
     var newState = React.addons.update(this.state, {
-      searchWord: {$set: null},
-      folder: {$set: folder}
+      folders: { $set: folders }
     });
     this.setState(newState);
   },
-  handleUnselectFolder: function(){
-    var newState = React.addons.update(this.state, {
-      folder: {$set: null}
-    });
-    this.setState(newState);
-  },
-  handleUpFolder: function(){
+  handleUpFolder: function(folder){
     var self = this;
     var request = gapi.client.drive.files.get({
-      'fileId': this.state.folder.parents[0].id
+      'fileId': folder.parents[0].id
     });
     request.execute(function(resp) {
       self.handleSelectFolder(resp);
     });
   },
 
-  render: function() {
-    var selectedFolder = null;
-    var parentFolder = null;
-    if(this.state.folder && this.state.folder.parents && this.state.folder.parents.length > 0){
-      parentFolder = this.state.folder.parents[this.state.folder.parents.length - 1];
-    }
-    var folderUpIcon = (<a href='#'
-      className='up'
-      onClick={this.handleUpFolder}>
-      <img src='images/folder-up-icon.png'/>
-    </a>);
-    if(this.state.folder){
-      selectedFolder = (
-        <div className='selectedFolder'>
-          <span>{this.state.folder.title}</span>
-          {parentFolder ? folderUpIcon : null }
-          <a href='#' className='remove'
-            onClick={this.handleUnselectFolder}>
+  buildFolders: function(){
+    var self = this;
+    var selectedFolders = [];
+    if(self.state.folders && self.state.folders.length > 0){
+      _.each(self.state.folders, function(folder){
+        var folderUpIcon = (<a href='#'
+          className='up'
+          onClick={self.handleUpFolder.bind(self, folder)}>
+          <img src='images/folder-up-icon.png'/>
+          </a>);
+        var parentFolder = null;
+        if(folder && folder.parents && folder.parents.length > 0){
+          parentFolder = folder.parents[folder.parents.length - 1];
+        }
+        selectedFolders.push(
+          <div className='selectedFolder'>
+            <span>{folder.title}</span>
+            {parentFolder ? folderUpIcon : null }
+            <a href='#' className='remove'
+            onClick={self.handleUnselectFolder.bind(self, folder)}>
             <img src='images/folder-remove-icon.png'/>
-          </a>
-        </div>
-      );
+            </a>
+          </div>
+        );
+      });
     }
+    return selectedFolders;
+  },
+
+  render: function() {
+    var folders = this.buildFolders();
     return (
       <div>
         <nav>
@@ -83,7 +94,8 @@ var SearchForm = React.createClass({
           </div>
         </nav>
         <SearchFormAdvanced handleSearch={this.handleSearch}/>
-        {selectedFolder}
+        {folders}
+        <div className='clearfix'/>
       </div>
     );
   }

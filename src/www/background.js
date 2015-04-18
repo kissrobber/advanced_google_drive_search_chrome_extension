@@ -1,7 +1,7 @@
 var formState = {
-  searchWord: null,
-  folder: null
+	searchWord: null,
+	folders: []
 }
 var advancedFormState = {
-  starred: false
+	starred: false
 }

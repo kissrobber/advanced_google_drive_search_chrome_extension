@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react/addons'),
+  _ = require('underscore'),
   Loading = require('./loading.js'),
   SearchForm = require('./search_form.js'),
   SearchResult = require('./search_result.js'),
@@ -9,8 +10,7 @@ var Search = React.createClass({
   getInitialState: function() {
     return {
       results: [],
-      loading: false,
-      folder: null
+      loading: false
     };
   },
   handleSearch: function(form){
@@ -42,8 +42,12 @@ var Search = React.createClass({
     if(form.starred === true){
       query.push('starred = true');
     }
-    if(form.folder){
-      query.push('"' + form.folder.id + '" in parents');
+    if(form.folders && form.folders.length > 0){
+      var tmp = [];
+      _.each(form.folders, function(folder){
+        tmp.push('"' + folder.id + '" in parents');
+      });
+      query.push('(' + tmp.join(' or ') + ')');
     }
     if(form.owner){
       query.push('"' + form.owner + '" in owners');
