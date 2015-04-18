@@ -25,7 +25,7 @@ var Auth = React.createClass({
     // "https://www.googleapis.com/auth/drive.appdata",
     // "https://www.googleapis.com/auth/drive.apps.readonly"
     gapi.auth.authorize({
-      client_id: "540816257433-e26grpsl1h9f5a2nuhnukmvpf04ee0mm.apps.googleusercontent.com",
+      client_id: "540816257433-satoregj0ihovaee1mge48hg69aaag90.apps.googleusercontent.com",
       scope: [
       "https://www.googleapis.com/auth/drive.readonly",
       "https://www.googleapis.com/auth/drive.metadata.readonly"

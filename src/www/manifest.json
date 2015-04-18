@@ -1,37 +1,37 @@
 {
-  "homepage_url": "https://github.com/kissrobber/advanced_google_drive_search_chrome_extension",
-  "manifest_version": 2,
-  "name": "Advanced Drive Search",
-  "short_name": "Advanced Drive Search",
-  "version": "1.0.1",
-  "description": "Advanced search for Google Drive.",
-  "browser_action": {
-    "default_icon": {
-      "19": "images/icon-19.png",
-      "38": "images/icon-38.png"
-    },
-    "default_title": "Advanced Drive Search",
-    "default_popup": "index.html",
-    "default_tooltip": "Advanced Drive Search"
-  },
-  "background": {
-    "scripts": ["background.js"]
-  },
-  "icons": {
-    "16": "images/icon-16.png",
-    "48": "images/icon-48.png",
-    "128": "images/icon-128.png"
-  },
-  "minimum_chrome_version": "41.0",
-  "content_security_policy": "script-src 'self' https://code.jquery.com https://cdnjs.cloudflare.com https://fonts.googleapis.com https://apis.google.com https://ajax.googleapis.com; object-src 'self'",
-  "permissions": [
-    "identity"
-  ],
-  "oauth2": {
-    "client_id": "540816257433-e26grpsl1h9f5a2nuhnukmvpf04ee0mm.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/drive.readonly",
-      "https://www.googleapis.com/auth/drive.metadata.readonly"
-    ]
-  }
+	"homepage_url": "https://github.com/kissrobber/advanced_google_drive_search_chrome_extension",
+	"manifest_version": 2,
+	"name": "Advanced Drive Search",
+	"short_name": "Advanced Drive Search",
+	"version": "1.0.2",
+	"description": "Advanced search for Google Drive.",
+	"browser_action": {
+		"default_icon": {
+			"19": "images/icon-19.png",
+			"38": "images/icon-38.png"
+		},
+		"default_title": "Advanced Drive Search",
+		"default_popup": "index.html",
+		"default_tooltip": "Advanced Drive Search"
+	},
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"icons": {
+		"16": "images/icon-16.png",
+		"48": "images/icon-48.png",
+		"128": "images/icon-128.png"
+	},
+	"minimum_chrome_version": "41.0",
+	"content_security_policy": "script-src 'self' https://code.jquery.com https://cdnjs.cloudflare.com https://fonts.googleapis.com https://apis.google.com https://ajax.googleapis.com; object-src 'self'",
+	"permissions": [
+		"identity"
+	],
+	"oauth2": {
+		"client_id": "540816257433-satoregj0ihovaee1mge48hg69aaag90.apps.googleusercontent.com",
+		"scopes": [
+			"https://www.googleapis.com/auth/drive.readonly",
+			"https://www.googleapis.com/auth/drive.metadata.readonly"
+		]
+	}
 }
