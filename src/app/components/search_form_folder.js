@@ -101,7 +101,7 @@ var SearchFormFolder = React.createClass({
       $('#folder_tree', React.findDOMNode(this)).empty().append(treeNode);
       treeNode.tree({
         data: this.state.tree.root.children,
-        autoOpen: true
+        autoOpen: false
       });
 
       treeNode.bind(
@@ -123,6 +123,10 @@ var SearchFormFolder = React.createClass({
       _.each(this.state.selecteds, function(folder){
         var node = treeNode.tree('getNodeById', folder.id);
         treeNode.tree('addToSelection', node);
+        while(node.parent){
+          node = node.parent;
+          treeNode.tree('openNode', node);
+        }
       });
     }
   },
