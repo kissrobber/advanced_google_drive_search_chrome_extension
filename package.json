@@ -1,5 +1,5 @@
 {
-  "name": "advanced google drive search chrome extension",
+  "name": "advanced_google_drive_search_chrome_extension",
   "version": "1.0.0",
   "description": "advanced google drive search chrome extension",
   "repository": {
@@ -37,6 +37,7 @@
   "dependencies": {
     "react": "^0.13.1",
     "underscore": "^1.8.3",
-    "moment": "^2.10.2"
+    "moment": "^2.10.2",
+    "tree-model": "^1.0.0"
   }
 }

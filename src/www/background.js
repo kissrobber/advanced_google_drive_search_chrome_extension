@@ -1,7 +1,9 @@
 var formState = {
-	searchWord: null,
-	folders: []
+  searchWord: null
+}
+var folderFormState = {
+  selecteds: []
 }
 var advancedFormState = {
-	starred: false
+  starred: false
 }

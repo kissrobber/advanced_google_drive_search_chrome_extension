@@ -18,22 +18,40 @@ var Auth = React.createClass({
     });
     this.props.onAuthChange(b);
   },
-  authorize: function(){
+
+  authorize: function(options){
     var self = this;
+    var immediate = true;
+    var retry = false;
+    if(options){
+      if(options.immediate){
+        immediate = options.immediate;
+      }
+      if(options.retry){
+        retry = options.retry;
+      }
+    }
     // "https://www.googleapis.com/auth/drive",
     // "https://www.googleapis.com/auth/drive.file",
     // "https://www.googleapis.com/auth/drive.appdata",
     // "https://www.googleapis.com/auth/drive.apps.readonly"
-    gapi.auth.authorize({
+    window.gapi.auth.authorize({
       client_id: "540816257433-satoregj0ihovaee1mge48hg69aaag90.apps.googleusercontent.com",
       scope: [
-      "https://www.googleapis.com/auth/drive.readonly",
-      "https://www.googleapis.com/auth/drive.metadata.readonly"
+        "https://www.googleapis.com/auth/drive.readonly",
+        "https://www.googleapis.com/auth/drive.metadata.readonly"
       ],
-      immediate: true
+      immediate: immediate
     }, function(token) {
+      console.log(token);
       if (token.error) {
-        self.handleAuth(false);
+        if(retry){
+          window.gapi.auth.init(function(){
+            self.authorize({ immediate: false, retry: false });
+          });
+        } else {
+          self.handleAuth(false);
+        }
       } else {
         self.handleAuth(true);
       }
@@ -50,7 +68,7 @@ var Auth = React.createClass({
     }, function(token) {
       if (token) {
         setTimeout(function(){
-          self.authorize();
+          self.authorize({retry: true});
         }, 10);
       } else {
         self.handleAuth(false);

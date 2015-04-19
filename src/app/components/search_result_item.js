@@ -2,11 +2,6 @@
 var React = require('react/addons');
 
 var SearchResultItem = React.createClass({
-  handleSelect: function(){
-    if(this.props.result.mimeType === "application/vnd.google-apps.folder"){
-      this.props.onSelectFolder(this.props.result);
-    }
-  },
   handleOpen: function(){
     chrome.tabs.create({ url: this.props.result.alternateLink });
   },
@@ -24,11 +19,6 @@ var SearchResultItem = React.createClass({
         <span> / {this.props.result.ownerNames[0]} / last modified at {this.props.result.modifiedDate}</span>
         <span className="secondary-content">
           { this.props.result.labels.starred ? <i className="mdi-action-star-rate small"></i> : null }
-          {
-            this.props.result.mimeType === "application/vnd.google-apps.folder" ?
-              <a href='#' onClick={this.handleSelect}><img src='images/folder-select-icon.png'/></a> :
-              null
-          }
           <a href='#' onClick={this.handleOpen}><img src='images/open-icon.png'/></a>
         </span>
         </div>

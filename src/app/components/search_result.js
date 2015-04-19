@@ -4,9 +4,6 @@ var React = require('react/addons'),
   SearchFormItem = require('./search_result_item');
 
 var SearchResult = React.createClass({
-  handleSelectFolder: function(folder){
-    this.props.handleSelectFolder(folder);
-  },
   render: function() {
     var self = this;
     var results = _.map(this.props.results, function(result){
@@ -14,7 +11,6 @@ var SearchResult = React.createClass({
         <SearchFormItem
           key={result.id}
           result={result}
-          onSelectFolder={self.handleSelectFolder}
         />
       );
     });
